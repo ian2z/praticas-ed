@@ -1,10 +1,11 @@
 from pilha import *
 
-print("=== PILHA ===")
 pilha = Pilha()
 pilha.empilhar("A")
 pilha.empilhar("B")
 pilha.empilhar("C")
-pilha.mostrar()  # C -> B -> A
+
+print("=== PILHA ===")
+pilha.mostrar()
 print("Desempilhando:", pilha.desempilhar())
-pilha.mostrar()  # B -> A
+pilha.mostrar()
