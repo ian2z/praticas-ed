@@ -19,7 +19,7 @@ class Lista():
         novo_no.proximo = self.head
         self.head = novo_no
         self.tamanho += 1
-        return f"{dado} Inserido no começo da lista."
+        print(f"{dado} Inserido no COMEÇO da lista.")
     
     def inserir_final(self, dado):
         novo_no = No(dado)
@@ -31,7 +31,7 @@ class Lista():
                 atual = atual.proximo
             atual.proximo = novo_no
         self.tamanho += 1
-        return f"{dado} Inserido no final da lista."
+        print(f"{dado} Inserido no FINAL da lista.")
     
     def remover_inicio(self):
         if self.vazia():
@@ -39,7 +39,8 @@ class Lista():
         dado_rem = self.head.dado
         self.head = self.head.proximo
         self.tamanho -= 1
-        return f"{dado_rem} Removido do inicio da lista."
+        print(f"{dado_rem} Removido do inicio da lista.")
+        return dado_rem
     
     def remover_final(self):
         if self.vazia():
@@ -59,7 +60,8 @@ class Lista():
         dado_rem = atual.proximo.dado
         atual.proximo = None
         self.tamanho -= 1
-        return f"{dado_rem} Removido com sucesso da lista"
+        print(f"{dado_rem} Removido com sucesso da lista")
+        return dado_rem
     
     def exibir(self):
         if self.vazia():
@@ -70,3 +72,41 @@ class Lista():
         while atual:
             print(atual.dado)
             atual = atual.proximo
+    
+    def buscar2(self, dado):
+        laps = Lista()
+        lap = 0
+        atual = self.head
+        if self.vazia():
+            print("A fila esta vazia!")
+            return None
+        else:
+            while atual:
+                if atual.dado == dado:
+                    laps.inserir_inicio(lap)
+                    atual.proximo
+                else:
+                    atual.proximo
+            if laps.vazia():
+                print(f"Nenhum valor {dado} encontrado na lista.")
+                return None
+            else:
+                print(f"Valor {dado} encontrado na lista, nas posiçoes:")
+                return laps.exibir()
+            
+    def buscar(self, dado_procurado):
+        if self.vazia():
+            print(f"Busca por {dado_procurado}: Lista vazia.")
+            return -1
+
+        atual = self.head
+        posicao = 0
+        while atual:
+            if atual.dado == dado_procurado:
+                print(f"'{dado_procurado}' ENCONTRADO na posição {posicao}.")
+                return posicao
+            atual = atual.proximo
+            posicao += 1
+
+        print(f"'{dado_procurado}' NÃO ENCONTRADO na lista.")
+        return -1
