@@ -73,27 +73,6 @@ class Lista():
             print(atual.dado)
             atual = atual.proximo
     
-    def buscar2(self, dado):
-        laps = Lista()
-        lap = 0
-        atual = self.head
-        if self.vazia():
-            print("A fila esta vazia!")
-            return None
-        else:
-            while atual:
-                if atual.dado == dado:
-                    laps.inserir_inicio(lap)
-                    atual.proximo
-                else:
-                    atual.proximo
-            if laps.vazia():
-                print(f"Nenhum valor {dado} encontrado na lista.")
-                return None
-            else:
-                print(f"Valor {dado} encontrado na lista, nas posiçoes:")
-                return laps.exibir()
-            
     def buscar(self, dado_procurado):
         if self.vazia():
             print(f"Busca por {dado_procurado}: Lista vazia.")
@@ -110,3 +89,17 @@ class Lista():
 
         print(f"'{dado_procurado}' NÃO ENCONTRADO na lista.")
         return -1
+    
+    def consultar(self, indicie):
+        if self.vazia():
+            print("A lista está vazia!")
+            return None
+        elif self.tamanho <= indicie:
+            print(f"O indicie é maior que a lista, tamanho da lista: {self.tamanho}")
+            return None
+        else:
+            atual = self.head
+            for i in range(indicie):
+                atual = atual.proximo
+            print(f"Valor na posição {indicie}: {atual.dado}")
+            return atual.dado
