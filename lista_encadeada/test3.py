@@ -12,6 +12,7 @@ lista.inserir_inicio(40) #2
 lista.inserir_inicio(10) #1
 lista.inserir_inicio(10) #0
 print("-------------------")
-lista.exibir
+lista.exibir()
 print("-------------------")
 lista.buscar_todos(10)
+print("-------------------")

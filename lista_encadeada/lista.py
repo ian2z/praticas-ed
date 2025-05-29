@@ -161,3 +161,33 @@ class Lista():
             print(f"'{dado_procurado}' ENCONTRADO nas posições: {posicoes}")
 
         return posicoes
+    
+    def remover_em(self, indicie):
+        if self.vazia():
+            print("A lista está vazia!")
+            return None
+        elif indicie > self.tamanho or indicie <= 0:
+            print(f"Indicie maior que a lista, tamanho da lista: {self.tamanho}")
+            return None
+        elif indicie == 0:
+            self.remover_inicio()
+        else:
+            atual = self.head
+            for i in range(indicie -1):
+                atual = atual.proximo
+            removido = atual.proximo.dado
+            atual.proximo = atual.proximo.proximo
+            print(f"Dado: {removido} removido da lista com sucesso.")
+            return None
+
+    
+    def __str__(self):
+        saida = '['
+        p = self.__inicio
+        while p != None:
+            saida += f'{p.dado}'
+            p = p.prox
+            if p != None:
+                saida += ' '
+        saida += ']'
+        return saida
