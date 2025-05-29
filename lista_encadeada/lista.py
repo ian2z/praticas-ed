@@ -1,4 +1,4 @@
-class No ():
+class No():
     def __init__(self, dado):
         self.dado = dado
         self.proximo = None
@@ -103,3 +103,61 @@ class Lista():
                 atual = atual.proximo
             print(f"Valor na posição {indicie}: {atual.dado}")
             return atual.dado
+        
+    def inserir_em(self, indicie, dado):
+        if indicie < 0 or indicie > self.tamanho:
+            print("Índicie fora dos limites da lista.")
+            return None
+        if indicie == 0:
+            self.inserir_inicio(dado)
+        elif indicie == self.tamanho:
+            self.inserir_final(dado)
+        else:
+            novo_no = No(dado)
+            atual = self.head
+            for i in range(indicie - 1):
+                atual = atual.proximo
+            novo_no.proximo = atual.proximo
+            atual.proximo = novo_no
+            self.tamanho += 1
+            print(f"{novo_no.dado} Inserido na posição {indicie} da lista.")
+            return novo_no.dado
+        
+    def buscar_todos(self, dado_procurado):
+        if self.vazia():
+            print(f"Não foi possível encontrar {dado_procurado} na lista: LISTA VAZIA")
+        posicoes = Lista()
+        pos = 0
+        p = self.head
+        while p.proximo:
+            if p.dado == dado_procurado:
+                posicoes.inserir_final(pos)
+            p = p.proximo
+            pos += 1
+        if posicoes.vazia():
+            print(f"Não foi encontrado nenhum dado: {dado_procurado} na lista.")
+        else:
+            print(f"{dado_procurado} encontrado nas posiçoes:")
+        return posicoes.exibir()
+    
+    def buscar_todos2(self, dado_procurado):
+        if self.vazia():
+            print(f"Busca por '{dado_procurado}': Lista vazia.")
+            return []
+
+        atual = self.head
+        posicoes = []
+        pos = 0
+
+        while atual:
+            if atual.dado == dado_procurado:
+                posicoes.append(pos)
+            atual = atual.proximo
+            pos += 1
+
+        if not posicoes:
+            print(f"'{dado_procurado}' NÃO ENCONTRADO na lista.")
+        else:
+            print(f"'{dado_procurado}' ENCONTRADO nas posições: {posicoes}")
+
+        return posicoes
